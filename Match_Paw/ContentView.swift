@@ -2,23 +2,27 @@
 //  ContentView.swift
 //  Match_Paw
 //
-//  Created by Joji Kashimura on 5/25/26.
-//
 
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @State private var splashDone = false
 
-#Preview {
-    ContentView()
+    var body: some View {
+        ZStack {
+            if !splashDone {
+                SplashView {
+                    withAnimation(.easeInOut(duration: 0.4)) {
+                        splashDone = true
+                    }
+                }
+                .transition(.opacity)
+                .zIndex(1)
+            } else {
+                MainTabView()
+                    .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.3), value: splashDone)
+    }
 }
