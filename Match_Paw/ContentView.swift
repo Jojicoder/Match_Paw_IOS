@@ -26,3 +26,8 @@ struct ContentView: View {
         .animation(.easeInOut(duration: 0.3), value: splashDone)
     }
 }
+
+#Preview {
+    ContentView()
+        .environmentObject(AuthViewModel())
+}

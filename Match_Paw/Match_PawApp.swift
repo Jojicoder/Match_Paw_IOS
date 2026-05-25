@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct Match_PawApp: App {
+    @StateObject private var auth = AuthViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(auth)
         }
     }
 }
